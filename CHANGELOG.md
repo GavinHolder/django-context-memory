@@ -5,6 +5,27 @@ All notable changes to Django Context Memory will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-12-29
+
+### Added
+- **Built-in Django Web UI**: Web dashboard now included in the library package
+- Django app configuration (`apps.py`, `views.py`, `urls.py`)
+- Professional light-themed web interface for context management
+- Templates packaged with library for easy Django integration
+
+### Changed
+- Consolidated all functionality into single library package
+- Web UI is now optional Django integration (add to INSTALLED_APPS)
+- Fixed Unicode emoji issues in CLI output (replaced with ASCII markers)
+- Updated documentation with Django integration instructions
+
+### Removed
+- Dependency on separate `app_memory` Django app (functionality now built-in)
+
+### Fixed
+- CLI output now works on Windows consoles (no Unicode errors)
+- Package imports properly configured for all usage methods
+
 ## [1.0.0] - 2025-12-29
 
 ### Added
