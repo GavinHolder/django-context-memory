@@ -21,7 +21,9 @@ Converts your Django codebase into structured, machine-readable context that AI 
 - **Technology Stack Detection**: Identifies Django components and third-party packages
 - **Auto-Generated Documentation**: Creates project-specific README and policies
 - **CLI Tools**: Simple commands for initialization and context building
+- **Web Dashboard**: Built-in Django web UI for visual management (optional)
 - **Framework-Aware**: Understands Django patterns (models, views, admin, serializers)
+- **Three Ways to Use**: CLI commands, Python API, or web interface
 
 ## Installation
 
@@ -189,27 +191,42 @@ context = builder.build_app_context(
 )
 ```
 
-## Optional Web UI
+## Web UI Dashboard (Optional)
 
-Add the web interface to visualize and manage context:
+The library includes a web dashboard for visualizing and managing context. To enable it:
+
+**1. Add to INSTALLED_APPS:**
 
 ```python
 # In your project's settings.py
 INSTALLED_APPS = [
     ...
-    'app_memory',  # Optional web UI
+    'django_context_memory',  # Add the web UI
 ]
 ```
+
+**2. Include URLs:**
 
 ```python
 # In your project's urls.py
+from django.urls import path, include
+
 urlpatterns = [
     ...
-    path('app-memory/', include('app_memory.urls')),
+    path('context-memory/', include('django_context_memory.urls')),
 ]
 ```
 
-Access at: `http://localhost:8000/app-memory/`
+**3. Access the dashboard:**
+
+Visit `http://localhost:8000/context-memory/` to:
+- View all discovered apps
+- Create snapshots (START/END)
+- Build context for individual apps
+- Build aggregated context for all apps
+- View statistics and summaries
+
+The web UI provides the same functionality as the CLI, but with a clean, visual interface.
 
 ## Requirements
 

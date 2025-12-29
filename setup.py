@@ -65,6 +65,7 @@ setup(
         "django_context_memory": [
             "templates/*.md",
             "templates/*.txt",
+            "templates/django_context_memory/*.html",
         ],
     },
     keywords="django ai claude code-intelligence context ast analysis",

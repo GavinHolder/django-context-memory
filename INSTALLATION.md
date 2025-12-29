@@ -48,27 +48,61 @@ for app_info in apps:
 aggregated = builder.build_aggregated_context()
 ```
 
-### Django Integration (Optional Web UI)
+### Django Integration (Optional Web UI Dashboard)
 
-1. Add to `INSTALLED_APPS` in settings.py:
+The library includes a built-in web dashboard. To enable it:
+
+**1. Add to `INSTALLED_APPS` in settings.py:**
+
 ```python
+# settings.py
 INSTALLED_APPS = [
-    ...
-    'app_memory',  # Web UI for context memory
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    # Your apps
+    'your_app',
+
+    # Add Django Context Memory web UI
+    'django_context_memory',  # <-- Add this
 ]
 ```
 
-2. Add to urls.py:
+**2. Include URLs in urls.py:**
+
 ```python
+# urls.py
+from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    ...
-    path('app-memory/', include('app_memory.urls')),
+    path('admin/', admin.site.urls),
+
+    # Add Django Context Memory dashboard
+    path('context-memory/', include('django_context_memory.urls')),  # <-- Add this
 ]
 ```
 
-3. Access the web UI at: `http://localhost:8000/app-memory/`
+**3. Run migrations (optional - no database tables needed):**
+
+```bash
+python manage.py migrate
+```
+
+**4. Access the dashboard:**
+
+Visit `http://localhost:8000/context-memory/` to use the web UI for:
+- Viewing discovered apps
+- Creating snapshots (START/END)
+- Building context for apps
+- Building aggregated context
+- Viewing statistics
+
+**Note:** The web UI is completely optional. You can use just the CLI or Python API if preferred.
 
 ---
 
