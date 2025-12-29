@@ -283,6 +283,6 @@ pip install django-context-memory
 
 ## Support
 
-- GitHub: https://github.com/gavinholder/django-context-memory
-- Issues: https://github.com/gavinholder/django-context-memory/issues
-- Documentation: https://github.com/gavinholder/django-context-memory#readme
+- GitHub: https://github.com/GavinHolder/django-context-memory
+- Issues: https://github.com/GavinHolder/django-context-memory/issues
+- Documentation: https://github.com/GavinHolder/django-context-memory#readme

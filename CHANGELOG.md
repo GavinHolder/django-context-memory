@@ -59,4 +59,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 For detailed information about each release, see the commit history at:
-https://github.com/gavinholder/django-context-memory
+https://github.com/GavinHolder/django-context-memory

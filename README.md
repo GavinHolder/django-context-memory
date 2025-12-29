@@ -1,5 +1,9 @@
 # Django Context Memory
 
+[![PyPI version](https://badge.fury.io/py/django-context-memory.svg)](https://badge.fury.io/py/django-context-memory)
+[![Python Versions](https://img.shields.io/pypi/pyversions/django-context-memory.svg)](https://pypi.org/project/django-context-memory/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A standalone library for generating deep code intelligence and context for AI assistants like Claude Code.
 
 ## What It Does

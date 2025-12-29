@@ -17,7 +17,7 @@ setup(
     description="Deep code intelligence for AI assistants working with Django projects",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/gavinholder/django-context-memory",
+    url="https://github.com/GavinHolder/django-context-memory",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -69,8 +69,8 @@ setup(
     },
     keywords="django ai claude code-intelligence context ast analysis",
     project_urls={
-        "Bug Reports": "https://github.com/gavinholder/django-context-memory/issues",
-        "Source": "https://github.com/gavinholder/django-context-memory",
-        "Documentation": "https://github.com/gavinholder/django-context-memory#readme",
+        "Bug Reports": "https://github.com/GavinHolder/django-context-memory/issues",
+        "Source": "https://github.com/GavinHolder/django-context-memory",
+        "Documentation": "https://github.com/GavinHolder/django-context-memory#readme",
     },
 )
