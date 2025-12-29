@@ -134,13 +134,13 @@ def cmd_build(args):
         context = builder.build_app_context(app_name)
         summary = context.get("summary", {})
 
-        print(f"✓ Context built successfully")
+        print(f"[OK] Context built successfully")
         print(f"  Files: {context['file_count']}")
         print(f"  Models: {len(summary.get('models', []))}")
         print(f"  Views: {len(summary.get('views', []))}")
         print(f"  URL patterns: {len(summary.get('url_patterns', []))}")
     except Exception as e:
-        print(f"✗ Error: {e}")
+        print(f"[ERROR] {e}")
         sys.exit(1)
 
 
@@ -157,7 +157,7 @@ def cmd_build_all(args):
         global_summary = result.get("global_summary", {})
         stats = global_summary.get("statistics", {})
 
-        print(f"\n✅ Aggregated context built successfully!")
+        print(f"\n[SUCCESS] Aggregated context built successfully!")
         print(f"\nProject: {result['project']}")
         print(f"  Apps: {result['total_apps']}")
         print(f"  Files: {result['total_files']}")
@@ -169,11 +169,11 @@ def cmd_build_all(args):
         print(f"  Classes: {stats.get('total_classes', 0)}")
         print(f"  Functions: {stats.get('total_functions', 0)}")
 
-        print(f"\n📁 Context saved to:")
+        print(f"\nContext saved to:")
         print(f"  {config.memory_dir / 'claude_aggregated_context.json'}")
 
     except Exception as e:
-        print(f"✗ Error: {e}")
+        print(f"[ERROR] {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)
@@ -199,19 +199,19 @@ def cmd_status(args):
     agg = status.get("aggregated", {})
     if agg.get("exists"):
         print("Aggregated Context:")
-        print(f"  ✓ Generated at: {agg.get('generated_at')}")
-        print(f"  ✓ Total apps: {agg.get('total_apps')}")
-        print(f"  ✓ Total files: {agg.get('total_files')}")
+        print(f"  [OK] Generated at: {agg.get('generated_at')}")
+        print(f"  [OK] Total apps: {agg.get('total_apps')}")
+        print(f"  [OK] Total files: {agg.get('total_files')}")
     else:
-        print("Aggregated Context: ✗ Not built")
+        print("Aggregated Context: [NOT BUILT]")
 
     print()
 
     # Per-app status
     print(f"Apps ({len(status.get('apps', []))}):")
     for app in status.get("apps", []):
-        snapshot_status = "✓" if app["snapshot"] else "✗"
-        context_status = "✓" if app["context"] else "✗"
+        snapshot_status = "[OK]" if app["snapshot"] else "[  ]"
+        context_status = "[OK]" if app["context"] else "[  ]"
         print(f"  {app['name']}")
         print(f"    Snapshot: {snapshot_status}")
         print(f"    Context:  {context_status}")
