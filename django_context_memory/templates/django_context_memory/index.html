@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Context Memory - {{ project_name }}</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Light Theme Color Palette */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #ffffff;
+            --border-color: #d0d7de;
+            --border-light: #e5e9ec;
+
+            /* Text Colors */
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --text-muted: #6e7781;
+
+            /* Accent Colors */
+            --accent-primary: #0969da;
+            --accent-success: #1a7f37;
+            --accent-warning: #bf8700;
+            --accent-danger: #cf222e;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            padding: 2rem 1rem;
+        }
+
+        /* Header */
+        .page-header {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-title i {
+            color: var(--accent-primary);
+        }
+
+        .project-name {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-weight: 500;
+        }
+
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Cards */
+        .card-light {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .card-light:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-primary);
+        }
+
+        .card-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Apps List */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .app-badge {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .app-badge:hover {
+            background: var(--bg-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .app-badge i {
+            color: var(--accent-primary);
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--accent-primary);
+            border: none;
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary-custom:hover {
+            background: #0860ca;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+
+        .btn-success-custom {
+            background: var(--accent-success);
+            border: none;
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-success-custom:hover {
+            background: #177030;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--accent-primary);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Progress Section */
+        .progress-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress {
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            background: var(--accent-primary);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-bar.progress-bar-animated {
+            background: linear-gradient(90deg, var(--accent-primary) 0%, #0860ca 50%, var(--accent-primary) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-dot.active {
+            background: var(--accent-primary);
+        }
+
+        .status-dot.success {
+            background: var(--accent-success);
+        }
+
+        .status-dot.error {
+            background: var(--accent-danger);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-label {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .stat-value.success {
+            color: var(--accent-success);
+        }
+
+        /* Messages */
+        .alert-custom {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert-custom.alert-success {
+            border-left-color: var(--accent-success);
+            background: #dafbe1;
+        }
+
+        .alert-custom.alert-danger {
+            border-left-color: var(--accent-danger);
+            background: #ffebe9;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-custom i {
+            font-size: 1.25rem;
+        }
+
+        .alert-success i {
+            color: var(--accent-success);
+        }
+
+        .alert-danger i {
+            color: var(--accent-danger);
+        }
+
+        .btn-close {
+            opacity: 0.5;
+        }
+
+        .btn-close:hover {
+            opacity: 1;
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .page-footer a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .page-header {
+                padding: 1.5rem;
+            }
+
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="page-header">
+            <div class="header-top">
+                <h1 class="page-title">
+                    <i class="bi bi-hdd-network-fill"></i>
+                    Django Context Memory
+                </h1>
+                <div class="project-name">
+                    <i class="bi bi-folder-fill"></i>
+                    {{ project_name }}
+                </div>
+            </div>
+            <p class="header-subtitle">Deep code intelligence for AI-assisted development</p>
+        </div>
+
+        <!-- Discovered Apps -->
+        <div class="card-light">
+            <div class="card-title">
+                <i class="bi bi-boxes"></i>
+                Discovered Apps ({{ apps|length }})
+            </div>
+            <div class="apps-grid">
+                {% for app in apps %}
+                    <div class="app-badge">
+                        <i class="bi bi-folder2"></i>
+                        {{ app.name }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card-light">
+            <div class="card-title">
+                <i class="bi bi-lightning-charge-fill"></i>
+                Actions
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <button class="btn btn-success-custom w-100" onclick="handleBuildAll()" id="btn-build-all">
+                        <i class="bi bi-gear-fill"></i>
+                        Build All Apps
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-outline-custom w-100" onclick="refreshPage()" id="btn-refresh">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Refresh Status
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress">
+                <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%"></div>
+            </div>
+            <div class="status-row">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">Ready</span>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="message-container"></div>
+
+        <!-- Statistics -->
+        <div class="card-light">
+            <div class="card-title">
+                <i class="bi bi-graph-up"></i>
+                Aggregated Context Statistics
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Apps</div>
+                    <div class="stat-value" id="stat-apps">
+                        {% if aggregated and aggregated.payload %}
+                            {{ aggregated.payload.total_apps }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Files</div>
+                    <div class="stat-value" id="stat-files">
+                        {% if aggregated and aggregated.payload %}
+                            {{ aggregated.payload.total_files }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Models</div>
+                    <div class="stat-value success" id="stat-models">
+                        {% if aggregated and aggregated.payload.global_summary %}
+                            {{ aggregated.payload.global_summary.statistics.total_models|default:"-" }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Views</div>
+                    <div class="stat-value success" id="stat-views">
+                        {% if aggregated and aggregated.payload.global_summary %}
+                            {{ aggregated.payload.global_summary.statistics.total_views|default:"-" }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Functions</div>
+                    <div class="stat-value" id="stat-functions">
+                        {% if aggregated and aggregated.payload.global_summary %}
+                            {{ aggregated.payload.global_summary.statistics.total_functions|default:"-" }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">URL Patterns</div>
+                    <div class="stat-value" id="stat-urls">
+                        {% if aggregated and aggregated.payload.global_summary %}
+                            {{ aggregated.payload.global_summary.statistics.total_url_patterns|default:"-" }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% if aggregated and aggregated.payload %}
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                <div class="stat-label" style="margin-bottom: 0.5rem;">Last Generated</div>
+                <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                    {{ aggregated.payload.generated_at }}
+                </div>
+                <div class="stat-label" style="margin-top: 1rem; margin-bottom: 0.5rem;">Context File</div>
+                <div style="color: var(--text-secondary); font-size: 0.9rem; font-family: 'Courier New', monospace;">
+                    .app_memory/claude_aggregated_context.json
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Footer -->
+        <div class="page-footer">
+            <i class="bi bi-code-slash"></i>
+            Built with <a href="https://github.com/GavinHolder/django-context-memory" target="_blank">Django Context Memory</a> v1.0.0
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const progressBar = document.getElementById('progress-bar');
+        const messageContainer = document.getElementById('message-container');
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function showMessage(message, type = 'success') {
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const icon = type === 'success' ? 'check-circle-fill' : 'exclamation-triangle-fill';
+
+            messageContainer.innerHTML = `
+                <div class="alert-custom ${alertClass}" role="alert">
+                    <i class="bi bi-${icon}"></i>
+                    <span>${message}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+            setTimeout(() => {
+                const alert = messageContainer.querySelector('.alert-custom');
+                if (alert) {
+                    alert.remove();
+                }
+            }, 5000);
+        }
+
+        function updateStatus(text, state = 'idle') {
+            statusText.textContent = text;
+            statusDot.className = 'status-dot';
+
+            if (state === 'active') {
+                statusDot.classList.add('active');
+            } else if (state === 'success') {
+                statusDot.classList.add('success');
+            } else if (state === 'error') {
+                statusDot.classList.add('error');
+            }
+        }
+
+        function setProgress(percent, animated = false) {
+            progressBar.style.width = percent + '%';
+
+            if (animated) {
+                progressBar.classList.add('progress-bar-animated');
+            } else {
+                progressBar.classList.remove('progress-bar-animated');
+            }
+        }
+
+        function disableButtons(disable = true) {
+            document.querySelectorAll('.btn').forEach(btn => btn.disabled = disable);
+        }
+
+        async function handleBuildAll() {
+            disableButtons(true);
+            updateStatus('Building context for all apps...', 'active');
+            setProgress(30, true);
+
+            try {
+                const response = await fetch('/app-memory/action/build-all/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+
+                const data = await response.json();
+
+                setProgress(70, true);
+
+                if (data.status === 'success') {
+                    setProgress(100, false);
+                    updateStatus('Build completed successfully!', 'success');
+                    showMessage(data.message, 'success');
+
+                    // Update stats
+                    if (data.total_apps) document.getElementById('stat-apps').textContent = data.total_apps;
+                    if (data.total_files) document.getElementById('stat-files').textContent = data.total_files;
+
+                    if (data.global_summary && data.global_summary.statistics) {
+                        const stats = data.global_summary.statistics;
+                        if (stats.total_models) document.getElementById('stat-models').textContent = stats.total_models;
+                        if (stats.total_views) document.getElementById('stat-views').textContent = stats.total_views;
+                        if (stats.total_functions) document.getElementById('stat-functions').textContent = stats.total_functions;
+                        if (stats.total_url_patterns) document.getElementById('stat-urls').textContent = stats.total_url_patterns;
+                    }
+
+                    // Reload page after 2 seconds
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    setProgress(0, false);
+                    updateStatus('Build failed', 'error');
+                    showMessage(data.message || 'Build failed', 'danger');
+                }
+            } catch (error) {
+                setProgress(0, false);
+                updateStatus('Connection error', 'error');
+                showMessage('Failed to build context: ' + error.message, 'danger');
+            } finally {
+                setTimeout(() => {
+                    disableButtons(false);
+                    if (progressBar.style.width !== '100%') {
+                        setProgress(0, false);
+                        updateStatus('Ready', 'idle');
+                    }
+                }, 500);
+            }
+        }
+
+        function refreshPage() {
+            updateStatus('Refreshing...', 'active');
+            setProgress(50, true);
+            setTimeout(() => {
+                location.reload();
+            }, 500);
+        }
+    </script>
+</body>
+</html>
