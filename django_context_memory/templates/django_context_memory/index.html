@@ -60,7 +60,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: var(--shadow-sm);
         }
 
@@ -99,6 +99,73 @@
             font-size: 0.95rem;
         }
 
+        /* Action Buttons - Top Bar */
+        .action-bar {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .action-bar-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-icon-success {
+            background: var(--accent-success);
+            color: white;
+        }
+
+        .btn-icon-success:hover {
+            background: #177030;
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-icon-primary {
+            background: var(--bg-primary);
+            color: var(--accent-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-icon-primary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-primary);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
         /* Cards */
         .card-light {
             background: var(--bg-primary);
@@ -112,7 +179,6 @@
 
         .card-light:hover {
             box-shadow: var(--shadow-md);
-            border-color: var(--accent-primary);
         }
 
         .card-title {
@@ -127,100 +193,67 @@
             gap: 0.5rem;
         }
 
-        /* Apps List */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 0.75rem;
+        /* Apps Table */
+        .apps-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
         }
 
-        .app-badge {
+        .apps-table thead th {
             background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             padding: 0.75rem 1rem;
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-weight: 500;
-            text-align: center;
+            text-align: left;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .apps-table thead th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        .apps-table thead th:last-child {
+            border-top-right-radius: 8px;
+        }
+
+        .apps-table tbody tr {
             transition: all 0.2s ease;
+        }
+
+        .apps-table tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .apps-table tbody td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-primary);
+        }
+
+        .apps-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .app-name {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            font-weight: 500;
         }
 
-        .app-badge:hover {
-            background: var(--bg-primary);
-            border-color: var(--accent-primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .app-badge i {
+        .app-name i {
             color: var(--accent-primary);
+            font-size: 1.125rem;
         }
 
-        /* Buttons */
-        .btn-primary-custom {
-            background: var(--accent-primary);
-            border: none;
-            color: white;
-            padding: 0.875rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-primary-custom:hover {
-            background: #0860ca;
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-            color: white;
-        }
-
-        .btn-success-custom {
-            background: var(--accent-success);
-            border: none;
-            color: white;
-            padding: 0.875rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-success-custom:hover {
-            background: #177030;
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-            color: white;
-        }
-
-        .btn-outline-custom {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.875rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-outline-custom:hover {
-            border-color: var(--accent-primary);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            box-shadow: var(--shadow-sm);
+        .app-path {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-family: 'Courier New', monospace;
         }
 
         /* Progress Section */
@@ -247,9 +280,14 @@
         }
 
         .progress-bar.progress-bar-animated {
-            background: linear-gradient(90deg, var(--accent-primary) 0%, #0860ca 50%, var(--accent-primary) 100%);
+            background: linear-gradient(
+                90deg,
+                var(--accent-primary) 0%,
+                var(--accent-success) 50%,
+                var(--accent-primary) 100%
+            );
             background-size: 200% 100%;
-            animation: shimmer 2s linear infinite;
+            animation: shimmer 2s infinite;
         }
 
         @keyframes shimmer {
@@ -261,7 +299,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 0.95rem;
+            font-size: 0.875rem;
             color: var(--text-secondary);
         }
 
@@ -270,19 +308,11 @@
             height: 10px;
             border-radius: 50%;
             background: var(--text-muted);
-            animation: pulse 2s ease-in-out infinite;
+            animation: pulse 2s infinite;
         }
 
         .status-dot.active {
-            background: var(--accent-primary);
-        }
-
-        .status-dot.success {
             background: var(--accent-success);
-        }
-
-        .status-dot.error {
-            background: var(--accent-danger);
         }
 
         @keyframes pulse {
@@ -290,12 +320,54 @@
             50% { opacity: 0.5; }
         }
 
-        /* Stats Grid */
+        /* Messages */
+        #message-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 400px;
+        }
+
+        .alert-custom {
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Statistics Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
-            margin-top: 1.5rem;
         }
 
         .stat-card {
@@ -303,14 +375,14 @@
             border: 1px solid var(--border-light);
             border-radius: 8px;
             padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            text-align: center;
             transition: all 0.2s ease;
         }
 
         .stat-card:hover {
+            background: var(--bg-primary);
             border-color: var(--accent-primary);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-sm);
         }
 
@@ -318,86 +390,38 @@
             font-size: 0.8125rem;
             color: var(--text-secondary);
             font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .stat-value {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--accent-primary);
-            font-family: 'Courier New', monospace;
+            color: var(--text-primary);
+            line-height: 1;
         }
 
         .stat-value.success {
             color: var(--accent-success);
         }
 
-        /* Messages */
-        .alert-custom {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-primary);
-            border-radius: 8px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            animation: slideIn 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .alert-custom.alert-success {
-            border-left-color: var(--accent-success);
-            background: #dafbe1;
-        }
-
-        .alert-custom.alert-danger {
-            border-left-color: var(--accent-danger);
-            background: #ffebe9;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .alert-custom i {
-            font-size: 1.25rem;
-        }
-
-        .alert-success i {
-            color: var(--accent-success);
-        }
-
-        .alert-danger i {
-            color: var(--accent-danger);
-        }
-
-        .btn-close {
-            opacity: 0.5;
-        }
-
-        .btn-close:hover {
-            opacity: 1;
+        .stat-value.primary {
+            color: var(--accent-primary);
         }
 
         /* Footer */
         .page-footer {
             text-align: center;
             padding: 2rem 0;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.875rem;
         }
 
         .page-footer a {
             color: var(--accent-primary);
             text-decoration: none;
+            font-weight: 500;
         }
 
         .page-footer a:hover {
@@ -406,22 +430,33 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .page-header {
-                padding: 1.5rem;
-            }
-
             .header-top {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
             }
 
+            .action-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .action-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .apps-table {
+                font-size: 0.875rem;
+            }
+
+            .apps-table thead th,
+            .apps-table tbody td {
+                padding: 0.5rem;
             }
         }
     </style>
@@ -443,41 +478,72 @@
             <p class="header-subtitle">Deep code intelligence for AI-assisted development</p>
         </div>
 
-        <!-- Discovered Apps -->
+        <!-- Action Bar (Moved to Top) -->
+        <div class="action-bar">
+            <div class="action-bar-title">
+                <i class="bi bi-lightning-charge-fill"></i>
+                Quick Actions
+            </div>
+            <div class="action-buttons">
+                <button
+                    class="btn-icon btn-icon-success"
+                    onclick="handleBuildAll()"
+                    id="btn-build-all"
+                    title="Build All Apps"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+                <button
+                    class="btn-icon btn-icon-primary"
+                    onclick="refreshPage()"
+                    id="btn-refresh"
+                    title="Refresh Status"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Discovered Apps (Table Format) -->
         <div class="card-light">
             <div class="card-title">
                 <i class="bi bi-boxes"></i>
                 Discovered Apps ({{ apps|length }})
             </div>
-            <div class="apps-grid">
-                {% for app in apps %}
-                    <div class="app-badge">
-                        <i class="bi bi-folder2"></i>
-                        {{ app.name }}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="card-light">
-            <div class="card-title">
-                <i class="bi bi-lightning-charge-fill"></i>
-                Actions
-            </div>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <button class="btn btn-success-custom w-100" onclick="handleBuildAll()" id="btn-build-all">
-                        <i class="bi bi-gear-fill"></i>
-                        Build All Apps
-                    </button>
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-outline-custom w-100" onclick="refreshPage()" id="btn-refresh">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        Refresh Status
-                    </button>
-                </div>
+            <div class="table-responsive">
+                <table class="apps-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>App Name</th>
+                            <th>Path</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in apps %}
+                            <tr>
+                                <td style="text-align: center;">{{ forloop.counter }}</td>
+                                <td>
+                                    <div class="app-name">
+                                        <i class="bi bi-folder2-open"></i>
+                                        <strong>{{ app.name }}</strong>
+                                    </div>
+                                </td>
+                                <td>
+                                    <code class="app-path">{{ app.path }}</code>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="3" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                                    No Django apps discovered
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -544,7 +610,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Functions</div>
-                    <div class="stat-value" id="stat-functions">
+                    <div class="stat-value primary" id="stat-functions">
                         {% if aggregated and aggregated.payload.global_summary %}
                             {{ aggregated.payload.global_summary.statistics.total_functions|default:"-" }}
                         {% else %}
@@ -554,7 +620,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">URL Patterns</div>
-                    <div class="stat-value" id="stat-urls">
+                    <div class="stat-value primary" id="stat-urls">
                         {% if aggregated and aggregated.payload.global_summary %}
                             {{ aggregated.payload.global_summary.statistics.total_url_patterns|default:"-" }}
                         {% else %}
@@ -563,37 +629,120 @@
                     </div>
                 </div>
             </div>
-
-            {% if aggregated and aggregated.payload %}
-            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-                <div class="stat-label" style="margin-bottom: 0.5rem;">Last Generated</div>
-                <div style="color: var(--text-secondary); font-size: 0.9rem;">
-                    {{ aggregated.payload.generated_at }}
-                </div>
-                <div class="stat-label" style="margin-top: 1rem; margin-bottom: 0.5rem;">Context File</div>
-                <div style="color: var(--text-secondary); font-size: 0.9rem; font-family: 'Courier New', monospace;">
-                    .app_memory/claude_aggregated_context.json
-                </div>
-            </div>
-            {% endif %}
         </div>
 
         <!-- Footer -->
         <div class="page-footer">
-            <i class="bi bi-code-slash"></i>
-            Built with <a href="https://github.com/GavinHolder/django-context-memory" target="_blank">Django Context Memory</a> v1.0.0
+            <p>
+                Powered by
+                <a href="https://github.com/GavinHolder/django-context-memory" target="_blank">
+                    Django Context Memory
+                </a>
+                | Deep code intelligence for AI assistants
+            </p>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        const statusDot = document.getElementById('status-dot');
-        const statusText = document.getElementById('status-text');
-        const progressBar = document.getElementById('progress-bar');
-        const messageContainer = document.getElementById('message-container');
+        // Initialize Bootstrap tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
+        // Show message helper
+        function showMessage(message, type = 'success') {
+            const container = document.getElementById('message-container');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-error';
+            const icon = type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill';
+
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert-custom ${alertClass}`;
+            alertDiv.innerHTML = `
+                <i class="bi bi-${icon}"></i>
+                <div>${message}</div>
+            `;
+
+            container.appendChild(alertDiv);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                alertDiv.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => alertDiv.remove(), 300);
+            }, 5000);
+        }
+
+        // Update progress
+        function updateProgress(percent, text) {
+            const progressBar = document.getElementById('progress-bar');
+            const statusText = document.getElementById('status-text');
+            const statusDot = document.getElementById('status-dot');
+
+            progressBar.style.width = percent + '%';
+            statusText.textContent = text;
+
+            if (percent > 0 && percent < 100) {
+                progressBar.classList.add('progress-bar-animated');
+                statusDot.classList.add('active');
+            } else {
+                progressBar.classList.remove('progress-bar-animated');
+                statusDot.classList.remove('active');
+            }
+        }
+
+        // Build All Apps
+        async function handleBuildAll() {
+            const button = document.getElementById('btn-build-all');
+            button.disabled = true;
+
+            updateProgress(10, 'Starting build for all apps...');
+
+            try {
+                const response = await fetch('{% url "django_context_memory:action_build_all" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    updateProgress(100, 'Build complete!');
+                    showMessage(data.message, 'success');
+
+                    // Update stats
+                    if (data.total_apps) document.getElementById('stat-apps').textContent = data.total_apps;
+                    if (data.total_files) document.getElementById('stat-files').textContent = data.total_files;
+                    if (data.global_summary && data.global_summary.statistics) {
+                        const stats = data.global_summary.statistics;
+                        if (stats.total_models) document.getElementById('stat-models').textContent = stats.total_models;
+                        if (stats.total_views) document.getElementById('stat-views').textContent = stats.total_views;
+                        if (stats.total_functions) document.getElementById('stat-functions').textContent = stats.total_functions;
+                        if (stats.total_url_patterns) document.getElementById('stat-urls').textContent = stats.total_url_patterns;
+                    }
+
+                    setTimeout(() => updateProgress(0, 'Ready'), 2000);
+                } else {
+                    updateProgress(0, 'Error occurred');
+                    showMessage(data.message || 'Build failed', 'error');
+                }
+            } catch (error) {
+                updateProgress(0, 'Error occurred');
+                showMessage('Network error: ' + error.message, 'error');
+            } finally {
+                button.disabled = false;
+            }
+        }
+
+        // Refresh page
+        function refreshPage() {
+            location.reload();
+        }
+
+        // Get CSRF token
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -607,121 +756,6 @@
                 }
             }
             return cookieValue;
-        }
-
-        function showMessage(message, type = 'success') {
-            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-            const icon = type === 'success' ? 'check-circle-fill' : 'exclamation-triangle-fill';
-
-            messageContainer.innerHTML = `
-                <div class="alert-custom ${alertClass}" role="alert">
-                    <i class="bi bi-${icon}"></i>
-                    <span>${message}</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            `;
-
-            setTimeout(() => {
-                const alert = messageContainer.querySelector('.alert-custom');
-                if (alert) {
-                    alert.remove();
-                }
-            }, 5000);
-        }
-
-        function updateStatus(text, state = 'idle') {
-            statusText.textContent = text;
-            statusDot.className = 'status-dot';
-
-            if (state === 'active') {
-                statusDot.classList.add('active');
-            } else if (state === 'success') {
-                statusDot.classList.add('success');
-            } else if (state === 'error') {
-                statusDot.classList.add('error');
-            }
-        }
-
-        function setProgress(percent, animated = false) {
-            progressBar.style.width = percent + '%';
-
-            if (animated) {
-                progressBar.classList.add('progress-bar-animated');
-            } else {
-                progressBar.classList.remove('progress-bar-animated');
-            }
-        }
-
-        function disableButtons(disable = true) {
-            document.querySelectorAll('.btn').forEach(btn => btn.disabled = disable);
-        }
-
-        async function handleBuildAll() {
-            disableButtons(true);
-            updateStatus('Building context for all apps...', 'active');
-            setProgress(30, true);
-
-            try {
-                const response = await fetch('/app-memory/action/build-all/', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': getCookie('csrftoken'),
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({})
-                });
-
-                const data = await response.json();
-
-                setProgress(70, true);
-
-                if (data.status === 'success') {
-                    setProgress(100, false);
-                    updateStatus('Build completed successfully!', 'success');
-                    showMessage(data.message, 'success');
-
-                    // Update stats
-                    if (data.total_apps) document.getElementById('stat-apps').textContent = data.total_apps;
-                    if (data.total_files) document.getElementById('stat-files').textContent = data.total_files;
-
-                    if (data.global_summary && data.global_summary.statistics) {
-                        const stats = data.global_summary.statistics;
-                        if (stats.total_models) document.getElementById('stat-models').textContent = stats.total_models;
-                        if (stats.total_views) document.getElementById('stat-views').textContent = stats.total_views;
-                        if (stats.total_functions) document.getElementById('stat-functions').textContent = stats.total_functions;
-                        if (stats.total_url_patterns) document.getElementById('stat-urls').textContent = stats.total_url_patterns;
-                    }
-
-                    // Reload page after 2 seconds
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2000);
-                } else {
-                    setProgress(0, false);
-                    updateStatus('Build failed', 'error');
-                    showMessage(data.message || 'Build failed', 'danger');
-                }
-            } catch (error) {
-                setProgress(0, false);
-                updateStatus('Connection error', 'error');
-                showMessage('Failed to build context: ' + error.message, 'danger');
-            } finally {
-                setTimeout(() => {
-                    disableButtons(false);
-                    if (progressBar.style.width !== '100%') {
-                        setProgress(0, false);
-                        updateStatus('Ready', 'idle');
-                    }
-                }, 500);
-            }
-        }
-
-        function refreshPage() {
-            updateStatus('Refreshing...', 'active');
-            setProgress(50, true);
-            setTimeout(() => {
-                location.reload();
-            }, 500);
         }
     </script>
 </body>
