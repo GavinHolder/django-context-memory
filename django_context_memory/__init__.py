@@ -4,7 +4,7 @@ Django Context Memory - Deep code intelligence for AI assistants
 A library for generating structured, machine-readable context from Django codebases.
 """
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 # Core library components
 from .config import Config
